@@ -12,6 +12,20 @@ $(document).ready(function () {
     let btnPrev = $('.prev');
     let btnNext = $('.next');
 
+    // Next image
+    function nextImg() {
+        imgIndex = (imgIndex + 1) % imgArray.length;
+    }
+
+    // Previous image
+    function prevImg() {
+        imgIndex = (imgIndex - 1)
+        if (imgIndex < 0) {
+            imgIndex = imgArray.length - 1;
+        }
+    }
+
+    // Change image with animation effect
     function changeImg() {
         img.fadeOut(300, function () {
             img.attr('src', 'img/' + imgArray[imgIndex]);
@@ -19,27 +33,21 @@ $(document).ready(function () {
         });
     }
 
-    // event handler for next button
+    // Event handler for next button
     btnNext.on('click', function () {
-        imgIndex = (imgIndex + 1) % imgArray.length;
-        // console.log(imgIndex);
+        nextImg()
         changeImg()
-    })
+    });
 
-    // event handler for clicking on img element
+    // Event handler for clicking on img element
     img.on('click', function () {
-        imgIndex = (imgIndex + 1) % imgArray.length;
-        // console.log(imgIndex);
+        nextImg()
         changeImg()
     })
 
-    // event handler for prev button
+    // Event handler for prev button
     btnPrev.on('click', function () {
-        imgIndex = (imgIndex - 1)
-        if (imgIndex < 0) {
-            imgIndex = imgArray.length - 1;
-        }
-        // console.log(imgIndex);
+        prevImg()
         changeImg()
     })
 })
